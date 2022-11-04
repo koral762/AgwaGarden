@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 function Categories(props) {
     return (
         <View style={styles.categoriesContainer}>
             <View style={styles.categoryPlants}></View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} disabled={true}>SAVE CHANGES</TouchableOpacity>
+                <TouchableOpacity style={styles.button} disabled={true}><Text>SAVE CHANGES</Text></TouchableOpacity>
             </View>
         </View>
     );
