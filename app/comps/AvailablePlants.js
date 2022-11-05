@@ -1,29 +1,25 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import PlantsCirclePreview from './PlantsCirclePreview';
 import { useDimensions } from '@react-native-community/hooks';
+import { useSelector } from 'react-redux';
 
-function Categories(props) {
+function AvailablePlants(props) {
 
     const PrevieWidth = useDimensions().screen.width;
+    const availablePlants = useSelector(store => store.orderPlantsReducer.availablePlants);
 
     return (
-        <View style={styles.categoriesContainer}>
+        <View style={styles.AvailablePlantsContainer}>
             <View style={styles.categoryPlants}>
-                <ScrollView horizontal={true}>
-                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} />
-                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} />
-                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} />
-                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} />
-                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} />
-                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} />
-                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} />
-                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} />
-                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} />
-                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} />
+                <FlatList 
+                keyExtractor={(item)=>item.id}
+                horizontal={true}
+                data={availablePlants} 
+                renderItem={({item})=>(
+                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} plant={item} isSelected={false} />
+                )}/>
 
-
-                </ScrollView>
             </View>
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button} disabled={true}><Text style={{ fontWeight: 'bold' }}>SAVE CHANGES</Text></TouchableOpacity>
@@ -34,19 +30,17 @@ function Categories(props) {
 
 const styles = StyleSheet.create({
 
-    categoriesContainer: {
+    AvailablePlantsContainer: {
         flex: 1,
         backgroundColor: 'rgba(239,234,253,1)',
         justifyContent: 'space-between'
     },
     categoryPlants: {
-
+        
         height: '70%',
         width: '100%',
         flexDirection: 'row',
         paddingLeft: 9
-
-
     },
     buttonContainer: {
         flex: 1,
@@ -66,9 +60,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: "rgba(148,217,234,1)",
 
-
     }
 
 })
 
-export default Categories;
+export default AvailablePlants;

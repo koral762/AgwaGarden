@@ -1,6 +1,6 @@
 import React from 'react';
 import { View , StyleSheet} from 'react-native';
-import Categories from '../comps/Categories';
+import AvailablePlants from '../comps/AvailablePlants';
 import NavBar from '../comps/NavBar';
 import YourNextOrder from '../comps/YourNextOrder';
 
@@ -10,7 +10,7 @@ function OrderScreen(props) {
         <View style={styles.background}>
             <NavBar/>
             <YourNextOrder/>
-            <Categories/>
+            <AvailablePlants/>
         </View>
     );
 }
