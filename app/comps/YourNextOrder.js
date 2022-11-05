@@ -3,12 +3,17 @@ import { View, StyleSheet, Text } from 'react-native';
 import getMonth from '../utils/getMonths';
 import PlantsCirclePreview from './PlantsCirclePreview';
 import { useDimensions } from '@react-native-community/hooks';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToSelectedPlants, getAvailablePlants } from '../store/orderPlantsReducer';
 
 function YourNextOrder(props) {
 
     const [currentMonth, nextMonth] = getMonth();
     const PrevieWidth = useDimensions().screen.width;
 
+    const dispatch = useDispatch();
+    dispatch(getAvailablePlants());
+    const availablePlants = useSelector(store=>store.orderPlantsReducer.availablePlants);
 
     return (
         <View style={styles.orderContainer}>
@@ -23,11 +28,11 @@ function YourNextOrder(props) {
             </View>
 
             <View style={styles.selectedPlants}>
-                <PlantsCirclePreview  PrevieWidth={PrevieWidth/6} margin={4} />
-                <PlantsCirclePreview  PrevieWidth={PrevieWidth/6} margin={4} />
-                <PlantsCirclePreview  PrevieWidth={PrevieWidth/6} margin={4} />
-                <PlantsCirclePreview  PrevieWidth={PrevieWidth/6} margin={4} />
-                <PlantsCirclePreview  PrevieWidth={PrevieWidth/6} margin={4} />
+                <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={4} />
+                <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={4} />
+                <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={4} />
+                <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={4} />
+                <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={4} />
             </View>
 
         </View>
