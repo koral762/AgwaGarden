@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         paddingRight: 40,
     },
     selectedPlants: {
-        backgroundColor: 'blue',
+        backgroundColor: 'rgba(247,245,255,1)',
         width: '100%',
         height: '30%',
         flexDirection: 'row',
