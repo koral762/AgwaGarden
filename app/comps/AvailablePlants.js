@@ -15,7 +15,7 @@ function AvailablePlants(props) {
     const plantsToView = plants.filter(item => !item.isSelected);
 
     const categories = useSelector(store => store.orderPlantsReducer.plantsCategories);
-    const categoriesToView = categories.map(category => category.name);
+    var categoriesToView = categories.map(category => category.name);
     const [plantsInCategory, setPlantsInCategory] = useState([]);
 
 
@@ -44,7 +44,7 @@ function AvailablePlants(props) {
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     horizontal={true}
-                    data={(plantsInCategory.length) ? plantsToView.filter(item => plantsInCategory.includes(item.id)) : plantsToView}
+                    data={(plantsInCategory.length ) ? plantsToView.filter(item => plantsInCategory.includes(item.id)) : plantsToView}
                     renderItem={({ item }) => (
                         <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} plant={item} isSelected={false} />
                     )} />

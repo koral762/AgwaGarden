@@ -24,13 +24,12 @@ function PlantsCirclePreview(props) {
             alignItems: 'center'
         }}>
             <TouchableOpacity style={styles.circlePreview} disabled={quantityLimit === 5 && !isSelected} key={plant.id} onPress={() => { pressOnPlant(plant.id, isSelected) }}></TouchableOpacity >
-            {isSelected && <Text style={styles.addOrRemove}>-</Text>}
-            {quantityLimit !== 5 && !isSelected && <Text style={styles.addOrRemove}>+</Text>}
+            {isSelected && <View style={styles.addOrRemove}><Text style={{textAlign: 'center',color: 'white'}}>-</Text></View>}
+            {quantityLimit !== 5 && !isSelected && <View style={styles.addOrRemove}><Text style={{textAlign: 'center',color: 'white'}}>+</Text></View>}
             <Text style={{ textAlign: 'center' }}>{plant.name.split('-')[0]}</Text>
         </View>
     );
 }
-
 
 
 const styles = StyleSheet.create({
@@ -55,8 +54,6 @@ const styles = StyleSheet.create({
         top: 45,
         right: 0,
         borderRadius: '100%',
-        textAlign: 'center',
-        color: 'white'
     }
 })
 

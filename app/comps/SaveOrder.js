@@ -8,9 +8,14 @@ function SaveOrder(props) {
     const dispatch = useDispatch();
     const quantityLimit = useSelector(store => store.orderPlantsReducer.quantityLimit);
 
+    function orderSaved(){
+        console.log('its save');
+    }
+
     return (
         <View style={(quantityLimit === 5)? styles.buttonContainer : styles.buttonContainerdisabled }>
-            <TouchableOpacity style={styles.button} disabled={quantityLimit !== 5}><Text style={{ fontWeight: 'bold' }}>SAVE CHANGES</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.button} disabled={quantityLimit !== 5} onPress={()=>{orderSaved()}} ><Text style={{ fontWeight: 'bold' }}>SAVE CHANGES</Text></TouchableOpacity>
+            {/* <View style={styles.order} */}
         </View>
     )
 }
