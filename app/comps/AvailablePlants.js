@@ -4,6 +4,7 @@ import PlantsCirclePreview from './PlantsCirclePreview';
 import { useDimensions } from '@react-native-community/hooks';
 import { useSelector } from 'react-redux';
 import SelectDropdown from 'react-native-select-dropdown'
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 
 function AvailablePlants(props) {
@@ -25,7 +26,19 @@ function AvailablePlants(props) {
     return (
         <View style={styles.AvailablePlantsContainer}>
 
-            <SelectDropdown style={styles.selectCategory} data={categoriesToView} onSelect={(selectedItem, index) => { CategorySelected(selectedItem, index) }} />
+            <SelectDropdown
+                defaultButtonText={'Select category'}
+                style={styles.selectCategory}
+                data={categoriesToView}
+                buttonTextStyle={styles.dropdown2BtnTxtStyle}
+                dropdownIconPosition={'right'}
+                dropdownStyle={styles.dropdown2DropdownStyle}
+                rowStyle={styles.dropdown2RowStyle}
+                rowTextStyle={styles.dropdown2RowTxtStyle}
+                renderDropdownIcon={isOpened => {
+                    return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#444'} size={18} />;
+                }}
+                onSelect={(selectedItem, index) => { CategorySelected(selectedItem, index) }} />
 
             <View style={styles.categoryPlants}>
                 <FlatList
@@ -67,9 +80,21 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(254,253,255,1)",
 
     },
-    selectCategory: {
-
+    dropdown2DropdownStyle: {
+        backgroundColor: 'rgba(255,255,255,0)',
+        borderBottomLeftRadius: 12,
+        borderBottomRightRadius: 12,
     },
+    dropdown2RowStyle: { backgroundColor: '#444', borderBottomColor: '#C5C5C5' },
+    dropdown2RowTxtStyle: {
+        color: '#FFF',
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+      dropdown2BtnTxtStyle: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+      },
     button: {
         backgroundColor: 'blue',
         width: '80%',
