@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     addOrRemove: {
         width: 20,
         height: 20,
-        backgroundColor: 'green',
+        backgroundColor: 'rgba(180,163,235,1)',
         position: 'absolute',
         top: 45,
         right: 0,
