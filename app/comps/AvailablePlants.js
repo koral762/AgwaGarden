@@ -5,7 +5,7 @@ import { useDimensions } from '@react-native-community/hooks';
 import { useSelector } from 'react-redux';
 import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
+import SaveOrder from './SaveOrder';
 
 function AvailablePlants(props) {
 
@@ -42,6 +42,7 @@ function AvailablePlants(props) {
 
             <View style={styles.categoryPlants}>
                 <FlatList
+                    showsVerticalScrollIndicator={false}
                     horizontal={true}
                     data={(plantsInCategory.length) ? plantsToView.filter(item => plantsInCategory.includes(item.id)) : plantsToView}
                     renderItem={({ item }) => (
@@ -49,10 +50,8 @@ function AvailablePlants(props) {
                     )} />
             </View>
 
+            <SaveOrder/>
 
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} disabled={true}><Text style={{ fontWeight: 'bold' }}>SAVE CHANGES</Text></TouchableOpacity>
-            </View>
         </View>
     );
 }
@@ -65,25 +64,16 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     categoryPlants: {
-
-        height: '70%',
+        height: '55%',
         width: '100%',
         flexDirection: 'row',
         paddingLeft: 9
-    },
-    buttonContainer: {
-        flex: 1,
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'yellow',
-        backgroundColor: "rgba(254,253,255,1)",
-
     },
     dropdown2DropdownStyle: {
         backgroundColor: 'rgba(255,255,255,0)',
         borderBottomLeftRadius: 12,
         borderBottomRightRadius: 12,
+        width: '50%',
     },
     dropdown2RowStyle: { backgroundColor: '#444', borderBottomColor: '#C5C5C5' },
     dropdown2RowTxtStyle: {
@@ -91,19 +81,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
     },
-      dropdown2BtnTxtStyle: {
+    dropdown2BtnTxtStyle: {
         textAlign: 'center',
         fontWeight: 'bold',
-      },
-    button: {
-        backgroundColor: 'blue',
-        width: '80%',
-        height: '30%',
-        alignItems: 'center',
-        borderRadius: 8,
-        justifyContent: 'center',
-        backgroundColor: "rgba(148,217,234,1)",
-
     }
 
 })
