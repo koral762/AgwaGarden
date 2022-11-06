@@ -9,31 +9,31 @@ import SelectDropdown from 'react-native-select-dropdown'
 function AvailablePlants(props) {
 
     const PrevieWidth = useDimensions().screen.width;
+
     const plants = useSelector(store => store.orderPlantsReducer.availablePlants);
+    const plantsToView = plants.filter(item => !item.isSelected);
+
     const categories = useSelector(store => store.orderPlantsReducer.plantsCategories);
     const categoriesToView = categories.map(category => category.name);
-
     const [plantsInCategory, setPlantsInCategory] = useState([]);
-    var plantsToView = plants.filter(item => !item.isSelected);
+
 
     function CategorySelected(selectedItem, index) {
         setPlantsInCategory(categories[index].plants.map(plant => plant.id));
-        plantsToView = plantsToView.map(item => plantsInCategory.includes(item.id))
     }
 
     return (
         <View style={styles.AvailablePlantsContainer}>
 
-            <SelectDropdown data={categoriesToView} onSelect={(selectedItem, index) => { CategorySelected(selectedItem, index) }} />
+            <SelectDropdown style={styles.selectCategory} data={categoriesToView} onSelect={(selectedItem, index) => { CategorySelected(selectedItem, index) }} />
 
             <View style={styles.categoryPlants}>
                 <FlatList
                     horizontal={true}
-                    data={plantsToView}
+                    data={(plantsInCategory.length) ? plantsToView.filter(item => plantsInCategory.includes(item.id)) : plantsToView}
                     renderItem={({ item }) => (
                         <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} plant={item} isSelected={false} />
                     )} />
-
             </View>
 
 
@@ -65,6 +65,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: 'yellow',
         backgroundColor: "rgba(254,253,255,1)",
+
+    },
+    selectCategory: {
 
     },
     button: {
