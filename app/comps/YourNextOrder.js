@@ -15,6 +15,7 @@ function YourNextOrder(props) {
     const plants = useSelector(store => store.orderPlantsReducer.availablePlants);
     const plantsToView = plants.filter(item => item.isSelected);
 
+
     return (
         <View style={styles.orderContainer}>
             <View style={styles.orderScreenText}>

@@ -1,15 +1,18 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { addOrRemoveSelectedPlant } from '../store/orderPlantsReducer';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 function PlantsCirclePreview(props) {
 
     const { PrevieWidth, margin, plant, isSelected } = props;
     const dispatch = useDispatch();
 
-    function pressOnPlant(id,isSelected) {
-        dispatch(addOrRemoveSelectedPlant({id,isSelected}));
+    const quantityLimit = useSelector(store => store.orderPlantsReducer.quantityLimit);
+
+    function pressOnPlant(id, isSelected) {
+        dispatch(addOrRemoveSelectedPlant({ id, isSelected }));
     }
 
     return (
@@ -18,11 +21,11 @@ function PlantsCirclePreview(props) {
             height: '80%',
             margin: margin,
             justifyContent: 'start',
-            alignItems: 'center',
+            alignItems: 'center'
         }}>
-            <TouchableOpacity style={styles.circlePreview} key={plant.id} onPress={() => { pressOnPlant(plant.id,isSelected) }}></TouchableOpacity >
+            <TouchableOpacity style={styles.circlePreview} disabled={quantityLimit === 5 && !isSelected} key={plant.id} onPress={() => { pressOnPlant(plant.id, isSelected) }}></TouchableOpacity >
             {isSelected && <Text style={styles.addOrRemove}>-</Text>}
-            {!isSelected && <Text style={styles.addOrRemove}>+</Text>}
+            {quantityLimit !== 5 && !isSelected && <Text style={styles.addOrRemove}>+</Text>}
             <Text style={{ textAlign: 'center' }}>{plant.name.split('-')[0]}</Text>
         </View>
     );

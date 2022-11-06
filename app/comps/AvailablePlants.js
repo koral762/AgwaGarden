@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import PlantsCirclePreview from './PlantsCirclePreview';
 import { useDimensions } from '@react-native-community/hooks';
 import { useSelector } from 'react-redux';
+import SelectDropdown from 'react-native-select-dropdown'
+
 
 function AvailablePlants(props) {
 
     const PrevieWidth = useDimensions().screen.width;
     const plants = useSelector(store => store.orderPlantsReducer.availablePlants);
-    const plantsToView = plants.filter(item => !item.isSelected);
+    const categories = useSelector(store => store.orderPlantsReducer.plantsCategories);
+    const categoriesToView = categories.map(category => category.name);
+
+    const [plantsInCategory, setPlantsInCategory] = useState([]);
+    var plantsToView = plants.filter(item => !item.isSelected);
+
+    function CategorySelected(selectedItem, index) {
+        setPlantsInCategory(categories[index].plants.map(plant => plant.id));
+        plantsToView = plantsToView.map(item => plantsInCategory.includes(item.id))
+    }
 
     return (
         <View style={styles.AvailablePlantsContainer}>
+
+            <SelectDropdown data={categoriesToView} onSelect={(selectedItem, index) => { CategorySelected(selectedItem, index) }} />
+
             <View style={styles.categoryPlants}>
                 <FlatList
                     horizontal={true}
@@ -22,7 +36,6 @@ function AvailablePlants(props) {
 
             </View>
 
-            
 
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button} disabled={true}><Text style={{ fontWeight: 'bold' }}>SAVE CHANGES</Text></TouchableOpacity>
