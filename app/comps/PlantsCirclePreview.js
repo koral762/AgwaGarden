@@ -20,7 +20,7 @@ function PlantsCirclePreview(props) {
             justifyContent: 'start',
             alignItems: 'center',
         }}>
-            <TouchableOpacity style={styles.circlePreview} id={plant.id} onPress={(event) => { pressOnPlant(plant.id,isSelected) }}></TouchableOpacity >
+            <TouchableOpacity style={styles.circlePreview} key={plant.id} onPress={() => { pressOnPlant(plant.id,isSelected) }}></TouchableOpacity >
             {isSelected && <Text style={styles.addOrRemove}>-</Text>}
             {!isSelected && <Text style={styles.addOrRemove}>+</Text>}
             <Text style={{ textAlign: 'center' }}>{plant.name.split('-')[0]}</Text>

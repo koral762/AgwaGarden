@@ -11,7 +11,9 @@ function YourNextOrder(props) {
 
     const [currentMonth, nextMonth] = getMonth();
     const PrevieWidth = useDimensions().screen.width;
-    const selectedPlants = useSelector(store => store.orderPlantsReducer.selectedPlants);
+
+    const plants = useSelector(store => store.orderPlantsReducer.availablePlants);
+    const plantsToView = plants.filter(item => item.isSelected);
 
     return (
         <View style={styles.orderContainer}>
@@ -27,9 +29,8 @@ function YourNextOrder(props) {
 
             <View style={styles.selectedPlants}>
             <FlatList 
-                keyExtractor={(item)=>item.id}
                 horizontal={true}
-                data={selectedPlants} 
+                data={plantsToView} 
                 renderItem={({item})=>(
                     <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={4} plant={item} isSelected={true} />
                 )}/>

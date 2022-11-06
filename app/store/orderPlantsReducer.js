@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const orderPlantsReducer = createSlice({
   name: "orderPlantsReducer",
@@ -36,16 +36,6 @@ const orderPlantsReducer = createSlice({
         imageId: "bigdena"
       }
     ],
-    selectedPlants: [{
-      id: "tomato_sunrise",
-      name: "Tomato - Sunrise",
-      imageId: "tomato_sunrise"
-    },
-    {
-      id: "tomato_bigdena",
-      name: "Tomato - Bigdena",
-      imageId: "bigdena"
-    }],
     plantsCategories: [],
     newOrder: []
   },
@@ -53,15 +43,14 @@ const orderPlantsReducer = createSlice({
   reducers: {
 
     getAvailablePlants: (state, action) => {
-      state.availablePlants = [{ koko: "koko" }];
     },
     addOrRemoveSelectedPlant: (state, action) => {
 
       const { id, isSelected } = action.payload;
 
-      if (!isSelected) {
-      }
-
+      const objPlantIdx = current(state.availablePlants).findIndex(item => item.id === id);
+      state.availablePlants[objPlantIdx].isSelected = !isSelected;
+      console.log(current(state.availablePlants));
 
     },
 

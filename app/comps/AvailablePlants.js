@@ -7,20 +7,23 @@ import { useSelector } from 'react-redux';
 function AvailablePlants(props) {
 
     const PrevieWidth = useDimensions().screen.width;
-    const availablePlants = useSelector(store => store.orderPlantsReducer.availablePlants);
+    const plants = useSelector(store => store.orderPlantsReducer.availablePlants);
+    const plantsToView = plants.filter(item => !item.isSelected);
 
     return (
         <View style={styles.AvailablePlantsContainer}>
             <View style={styles.categoryPlants}>
-                <FlatList 
-                keyExtractor={(item)=>item.id}
-                horizontal={true}
-                data={availablePlants} 
-                renderItem={({item})=>(
-                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} plant={item} isSelected={false} />
-                )}/>
+                <FlatList
+                    horizontal={true}
+                    data={plantsToView}
+                    renderItem={({ item }) => (
+                        <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} plant={item} isSelected={false} />
+                    )} />
 
             </View>
+
+            
+
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button} disabled={true}><Text style={{ fontWeight: 'bold' }}>SAVE CHANGES</Text></TouchableOpacity>
             </View>
@@ -36,7 +39,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     categoryPlants: {
-        
+
         height: '70%',
         width: '100%',
         flexDirection: 'row',

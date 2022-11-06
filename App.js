@@ -4,8 +4,8 @@ import OrderScreen from './app/screens/OrderScreen';
 import { store } from './app/store/store';
 import { Provider } from 'react-redux';
 
-export default function App() {
 
+export default function App() {
 
   return (
     <Provider store={store}>
