@@ -15,8 +15,39 @@ const usersReducer = createSlice({
           email: "koral762@gmail.com",
           phoneNumber: '0542234567',
           address: 'hashalom 441/21 , tel aviv',
-          plants: []
-        }]
+          plants: [
+            { id: 'tomato_sunrise1', name: 'Tomato - Sunrise', imageId: 'tomato_sunrise', isSelected: true },
+
+            { id: 'tomato_bigdena1', name: 'Tomato - Bigdena', imageId: 'bigdena', isSelected: true },
+
+            { id: 'cucumber_iznik', name: 'Cucumber - Iznik', imageId: 'iznik', isSelected: true },
+
+            { id: 'tomato_sunrise', name: 'Tomato - Sunrise', imageId: 'tomato_sunrise', isSelected: true },
+
+            { id: 'tomato_bigdena', name: 'Tomato - Bigdena', imageId: 'bigdena', isSelected: true }
+          ]
+
+        },
+        {
+          id: "34554",
+          name: "koral sabbah",
+          email: "koral762@gmail.com",
+          phoneNumber: '0542234567',
+          address: 'hashalom 441/21 , tel aviv',
+          plants: [
+            { id: 'tomato_sunrise1', name: 'Tomato - Sunrise', imageId: 'tomato_sunrise', isSelected: true },
+
+            { id: 'tomato_bigdena1', name: 'Tomato - Bigdena', imageId: 'bigdena', isSelected: true },
+
+            { id: 'cucumber_iznik', name: 'Cucumber - Iznik', imageId: 'iznik', isSelected: true },
+
+            { id: 'tomato_sunrise', name: 'Tomato - Sunrise', imageId: 'tomato_sunrise', isSelected: true },
+
+            { id: 'tomato_bigdena', name: 'Tomato - Bigdena', imageId: 'bigdena', isSelected: true }
+          ]
+
+        }],
+        isConnected: false
 
       },
       {
@@ -26,7 +57,7 @@ const usersReducer = createSlice({
         ordersHistory: [],
         phoneNumber: "0508823433",
         address: 'nahalal 34 , tel aviv',
-        isConnected: false
+        isConnected: true
       },
       {
         id: "2451",
@@ -38,15 +69,11 @@ const usersReducer = createSlice({
         isConnected: false
       }
     ],
-    currentUser:
-    {
+
+    currentUser: {
       id: "123",
       name: "koral sabbah",
       email: "koral762@gmail.com",
-      ordersHistory: [],
-      phoneNumber: "0508823433",
-      address: 'nahalal 34 , tel aviv',
-
       ordersHistory: [{
         id: "1278esik",
         name: "koral sabbah",
@@ -64,18 +91,22 @@ const usersReducer = createSlice({
 
           { id: 'tomato_bigdena', name: 'Tomato - Bigdena', imageId: 'bigdena', isSelected: true }
         ]
-      }]
+
+      }],
+      isConnected: true
 
     }
-
-
   },
 
   reducers: {
+
+    getCurrentUser: () => {
+
+    }
 
   }
 
 })
 
-export const { } = usersReducer.actions;
+export const { getCurrentUser } = usersReducer.actions;
 export default usersReducer.reducer;

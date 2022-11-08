@@ -126,9 +126,18 @@ const orderPlantsReducer = createSlice({
 
       const objPlantIdx = current(state.availablePlants).findIndex(item => item.id === id);
       state.availablePlants[objPlantIdx].isSelected = !isSelected;
-
+      
       state.selectedPlants = state.availablePlants.filter(item => item.isSelected);
       state.quantityLimit = state.selectedPlants.length;
+      
+    },
+    addToSelectedPlants: (state, action) => {
+      
+      const plant = action.payload;
+      state.selectedPlants.push(plant);
+
+      const objPlantIdx = current(state.availablePlants).findIndex(item => item.id === plant.id);
+      state.availablePlants[objPlantIdx].isSelected = true;
 
     },
     getQuantityLimit: (state, action) => {
@@ -137,7 +146,7 @@ const orderPlantsReducer = createSlice({
     createNewOrder: (state, action) => {
 
       const user = action.payload;
-      
+
       const order = {
         name: user.name,
         email: user.email,
@@ -145,8 +154,8 @@ const orderPlantsReducer = createSlice({
         address: user.address,
         plants: current(state.selectedPlants)
       }
-      
-      console.log('new order:',order);
+
+      console.log('new order:', order);
 
     }
 
@@ -154,5 +163,5 @@ const orderPlantsReducer = createSlice({
 
 })
 
-export const { addOrRemoveSelectedPlant, getAvailablePlants, createNewOrder} = orderPlantsReducer.actions;
+export const { addOrRemoveSelectedPlant, getAvailablePlants,addToSelectedPlants, createNewOrder } = orderPlantsReducer.actions;
 export default orderPlantsReducer.reducer;

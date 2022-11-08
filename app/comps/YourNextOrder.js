@@ -5,16 +5,19 @@ import PlantsCirclePreview from './PlantsCirclePreview';
 import { useDimensions } from '@react-native-community/hooks';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAvailablePlants } from '../store/orderPlantsReducer';
+import { getCurrentUser } from '../store/usersReducer';
+import { addOrRemoveSelectedPlant } from '../store/orderPlantsReducer';
+
 
 function YourNextOrder(props) {
+
+
 
     const [currentMonth, nextMonth] = getMonth();
     const PrevieWidth = useDimensions().screen.width;
 
     const plants = useSelector(store => store.orderPlantsReducer.availablePlants);
     const plantsToView = plants.filter(item => item.isSelected);
-
 
     return (
         <View style={styles.orderContainer}>
@@ -29,12 +32,12 @@ function YourNextOrder(props) {
             </View>
 
             <View style={styles.selectedPlants}>
-            <FlatList 
-                horizontal={true}
-                data={plantsToView} 
-                renderItem={({item})=>(
-                    <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={4} plant={item} isSelected={true} />
-                )}/>
+                <FlatList
+                    horizontal={true}
+                    data={plantsToView}
+                    renderItem={({ item }) => (
+                        <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={4} plant={item} isSelected={true} />
+                    )} />
             </View>
 
         </View>
