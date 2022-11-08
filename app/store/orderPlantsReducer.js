@@ -138,6 +138,7 @@ const orderPlantsReducer = createSlice({
 
       const objPlantIdx = current(state.availablePlants).findIndex(item => item.id === plant.id);
       state.availablePlants[objPlantIdx].isSelected = true;
+      state.quantityLimit = state.selectedPlants.length;
 
     },
     getQuantityLimit: (state, action) => {

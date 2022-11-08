@@ -4,7 +4,8 @@ const NewOrder = new mongoose.Schema({
     name: String,
     email: String,
     phoneNumber: String,
-    selectedPlants: Array
+    address: String,
+    plants: Array
 })
 
-mongoose.model("newOrder",NewOrder);
+mongoose.model("newOrder", NewOrder);
