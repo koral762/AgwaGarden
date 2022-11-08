@@ -112,6 +112,7 @@ const orderPlantsReducer = createSlice({
         }
       ],
     quantityLimit: 0,
+    selectedPlants: [],
     newOrder: []
   },
 
@@ -132,11 +133,26 @@ const orderPlantsReducer = createSlice({
     },
     getQuantityLimit: (state, action) => {
       return current(state.selectedPlants).length;
+    },
+    createNewOrder: (state, action) => {
+
+      const user = action.payload;
+      
+      const order = {
+        name: user.name,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        address: user.address,
+        plants: current(state.selectedPlants)
+      }
+      
+      console.log('new order:',order);
+
     }
 
   }
 
 })
 
-export const { addOrRemoveSelectedPlant, getAvailablePlants } = orderPlantsReducer.actions;
+export const { addOrRemoveSelectedPlant, getAvailablePlants, createNewOrder} = orderPlantsReducer.actions;
 export default orderPlantsReducer.reducer;

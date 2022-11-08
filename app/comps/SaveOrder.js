@@ -1,26 +1,32 @@
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { createNewOrder } from '../store/orderPlantsReducer';
 
 function SaveOrder(props) {
 
     const dispatch = useDispatch();
     const quantityLimit = useSelector(store => store.orderPlantsReducer.quantityLimit);
+    const currentUser = useSelector(store => store.usersReducer.currentUser);
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     function orderSaved() {
+        dispatch(createNewOrder(currentUser));
+        
         setModalIsOpen(true);
         setTimeout(() => {
             setModalIsOpen(false);
         }, 2000);
+
     }
 
     return (
         <View>
 
             <View style={(quantityLimit === 5) ? styles.buttonContainer : styles.buttonContainerdisabled}>
-                <TouchableOpacity style={styles.button} disabled={quantityLimit !== 5} onPress={() => { orderSaved() }} ><Text style={{ fontWeight: 'bold' }}>SAVE CHANGES</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button} disabled={quantityLimit !== 5} onPress={() => { orderSaved() }} >
+                    <Text style={{ fontWeight: 'bold', height: 30 }}>SAVE CHANGES</Text>
+                </TouchableOpacity>
             </View>
 
             {modalIsOpen && <View style={styles.orderSavedConfirmation}>
@@ -59,19 +65,21 @@ const styles = StyleSheet.create({
     button: {
         flex: 1,
         width: '80%',
-        height: '30%',
+        height: '80%',
         borderRadius: 8,
-        padding:10,
-        marginBottom:20,
+        padding: 10,
+        marginBottom: 50,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: "rgba(148,217,234,1)",
+
     },
     buttonContainer: {
         flex: 1,
         width: '100%',
+        height: 400,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'start',
     },
     buttonContainerdisabled: {
         flex: 1,
@@ -80,7 +88,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         opacity: 0.5,
     },
-  
+
 })
 
 export default SaveOrder;

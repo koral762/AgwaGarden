@@ -6,8 +6,8 @@ function NavBar(props) {
 
     return (
         <View style={styles.navbar}>
-            <Text style={{ textAlign: 'center' }}>ORDER</Text>
             <Text style={styles.xStyle}>x</Text>
+            <Text style={{ textAlign: 'center' }}>ORDER</Text>
         </View>
     );
 }
@@ -27,8 +27,9 @@ const styles = StyleSheet.create({
         width: '10%',
         alignSelf: 'end',
         position: "absolute",
-        fontSize:30,
+        fontSize:40,
         top:0,
+        right:0,
         paddingTop: 10,
         paddingRight: 10
     }

@@ -44,13 +44,15 @@ function AvailablePlants(props) {
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     horizontal={true}
-                    data={(plantsInCategory.length ) ? plantsToView.filter(item => plantsInCategory.includes(item.id)) : plantsToView}
+                    data={(plantsInCategory.length) ? plantsToView.filter(item => plantsInCategory.includes(item.id)) : plantsToView}
                     renderItem={({ item }) => (
                         <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} plant={item} isSelected={false} />
                     )} />
             </View>
 
-            <SaveOrder/>
+            <View>
+                <SaveOrder />
+            </View>
 
         </View>
     );
