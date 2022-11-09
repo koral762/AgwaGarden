@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View,Modal } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewOrder } from '../store/orderPlantsReducer';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Link } from '@react-navigation/native';
+
 
 function SaveOrder(props) {
 
@@ -12,7 +16,7 @@ function SaveOrder(props) {
 
     function orderSaved() {
         dispatch(createNewOrder(currentUser));
-        
+
         setModalIsOpen(true);
         setTimeout(() => {
             setModalIsOpen(false);
@@ -22,14 +26,7 @@ function SaveOrder(props) {
 
     return (
         <View>
-
-            <View style={(quantityLimit === 5) ? styles.buttonContainer : styles.buttonContainerdisabled}>
-                <TouchableOpacity style={styles.button} disabled={quantityLimit !== 5} onPress={() => { orderSaved() }} >
-                    <Text style={{ fontWeight: 'bold', height: 30 }}>SAVE CHANGES</Text>
-                </TouchableOpacity>
-            </View>
-
-            {modalIsOpen && <View style={styles.orderSavedConfirmation}>
+            {modalIsOpen && <Modal style={styles.orderSavedConfirmation}>
                 <View style={styles.confirmationTextContainer}>
                     <Image
                         source={{
@@ -38,7 +35,14 @@ function SaveOrder(props) {
                     <Text style={{ fontWeight: 'bold', fontSize: 22 }}>Awesome!</Text>
                     <Text style={{ fontSize: 20 }}>Your order is complete!</Text>
                 </View>
-            </View>}
+            </Modal>}
+
+            <View style={(quantityLimit === 5) ? styles.buttonContainer : styles.buttonContainerdisabled}>
+                <TouchableOpacity style={styles.button} disabled={quantityLimit !== 5} onPress={() => { orderSaved() }} >
+                    <Text style={{ fontWeight: 'bold', height: 30 }}>SAVE CHANGES</Text>
+                </TouchableOpacity>
+            </View>
+
         </View>
     )
 }
@@ -46,47 +50,42 @@ function SaveOrder(props) {
 
 const styles = StyleSheet.create({
     orderSavedConfirmation: {
-        position: "fixed",
-        width: '100%',
-        height: '100%',
-        backgroundColor: "rgba(104,225,131,0.7)",
-        top: 0,
         justifyContent: "center",
         alignItems: "center"
     },
     confirmationTextContainer: {
-        width: '70%',
-        height: '30%',
-        backgroundColor: "white",
+        flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 15,
+        marginTop: 22,
+
+    },
+    buttonContainer: {
+        width: '100%',
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 60,
+
+    },
+    buttonContainerdisabled: {
+        width: '100%',
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 60,
+        opacity: 0.5,
     },
     button: {
-        flex: 1,
         width: '80%',
         height: '80%',
         borderRadius: 8,
         padding: 10,
+        paddingTop: 20,
         marginBottom: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: "rgba(148,217,234,1)",
-
-    },
-    buttonContainer: {
-        flex: 1,
-        width: '100%',
-        height: 400,
-        alignItems: 'center',
-        justifyContent: 'start',
-    },
-    buttonContainerdisabled: {
-        flex: 1,
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        opacity: 0.5,
+        backgroundColor: "rgba(148,217,234,1)"
     },
 
 })

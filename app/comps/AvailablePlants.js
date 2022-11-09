@@ -7,7 +7,7 @@ import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SaveOrder from './SaveOrder';
 
-function AvailablePlants(props) {
+function AvailablePlants({navigation}) {
 
 
     const PrevieWidth = useDimensions().screen.width;
@@ -32,7 +32,6 @@ function AvailablePlants(props) {
 
             <SelectDropdown
                 defaultButtonText={'Select category'}
-                style={styles.selectCategory}
                 data={categoriesToView}
                 buttonTextStyle={styles.dropdown2BtnTxtStyle}
                 dropdownIconPosition={'right'}
@@ -56,7 +55,7 @@ function AvailablePlants(props) {
 
 
             <View>
-                <SaveOrder />
+                <SaveOrder navigation={navigation} />
             </View>
 
         </View>
@@ -66,33 +65,35 @@ function AvailablePlants(props) {
 const styles = StyleSheet.create({
 
     AvailablePlantsContainer: {
-        flex: 1,
+        flex: 0.7,
         backgroundColor: 'rgba(239,234,253,1)',
         justifyContent: 'space-between'
     },
-    // categoryPlants: {
-    //     height: '55%',
-    //     width: '100%',
-    //     flexDirection: 'row',
-    //     paddingLeft: 9
-    // },
-    // dropdown2DropdownStyle: {
-    //     backgroundColor: 'rgba(255,255,255,0)',
-    //     borderBottomLeftRadius: 12,
-    //     borderBottomRightRadius: 12,
-    //     width: '50%',
-    // },
-    // dropdown2RowStyle: { backgroundColor: '#444', borderBottomColor: '#C5C5C5' },
-    // dropdown2RowTxtStyle: {
-    //     color: '#FFF',
-    //     textAlign: 'center',
-    //     fontWeight: 'bold',
-    // },
-    // dropdown2BtnTxtStyle: {
-    //     textAlign: 'center',
-    //     fontWeight: 'bold',
-    // }
+    categoryPlants: {
+        height: '55%',
+        width: '100%',
+        flexDirection: 'row',
+        paddingLeft: 9
+    },
+    dropdown2DropdownStyle: {
+        backgroundColor: 'rgba(255,255,255,0)',
+        borderBottomLeftRadius: 12,
+        borderBottomRightRadius: 12,
+        width: '50%',
+    },
+    dropdown2RowStyle: { backgroundColor: '#444', borderBottomColor: '#C5C5C5' },
+    dropdown2RowTxtStyle: {
+        color: '#FFF',
+        textAlign: 'center',
+        fontWeight: 'bold',
 
+    },
+    dropdown2BtnTxtStyle: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+
+    
 })
 
 export default AvailablePlants;

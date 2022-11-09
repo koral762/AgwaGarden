@@ -4,36 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import AvailablePlants from '../comps/AvailablePlants';
 import NavBar from '../comps/NavBar';
 import YourNextOrder from '../comps/YourNextOrder';
-import { addToSelectedPlants,addOrRemoveSelectedPlant, getAvailablePlants } from '../store/orderPlantsReducer';
+import { addToSelectedPlants, addOrRemoveSelectedPlant, getAvailablePlants } from '../store/orderPlantsReducer';
 
-function OrderScreen(props) {
+function OrderScreen(navigation) {
 
     const dispatch = useDispatch();
     const [isLoading, setLoading] = useState(true);
-    var currentUserLastOrder = useSelector(store => store.usersReducer.currentUser.ordersHistory);
     const plants = useSelector(store => store.orderPlantsReducer.availablePlants);
-
-    useEffect(() => {
-
-        if (currentUserLastOrder.length !== 0 && plants.length !== 0) {
-
-            currentUserLastOrder = currentUserLastOrder[currentUserLastOrder.length - 1];
-
-            for (var x = 0; x < 5; x++) {
-                dispatch(addOrRemoveSelectedPlant(currentUserLastOrder.plants[x]))
-            }
-
-        }
-
-    }, [])
 
     return (
         <View style={styles.background}>
-            <NavBar />
+            <NavBar title={'ORDER'} />
             {plants.length !== 0 &&
                 <View style={{ flex: 1 }}>
                     <YourNextOrder />
-                    <AvailablePlants />
+                    <AvailablePlants navigation={navigation} />
                 </View>}
         </View>
     );
@@ -42,7 +27,8 @@ function OrderScreen(props) {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor: "pink"
+        backgroundColor: 'rgba(247,245,255,1)'
+
     }
 })
 

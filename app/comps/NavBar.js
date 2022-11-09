@@ -7,7 +7,7 @@ function NavBar(props) {
     return (
         <View style={styles.navbar}>
             <Text style={styles.xStyle}>x</Text>
-            <Text style={{ textAlign: 'center' }}>ORDER</Text>
+            <Text style={{ textAlign: 'center' }}>{props.title}</Text>
         </View>
     );
 }

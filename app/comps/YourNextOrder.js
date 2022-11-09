@@ -11,13 +11,27 @@ import { addOrRemoveSelectedPlant } from '../store/orderPlantsReducer';
 
 function YourNextOrder(props) {
 
-
+    const dispatch = useDispatch();
     const [currentMonth, nextMonth] = getMonth();
+    const [counter, setCounter] = useState(0);
+
     const PrevieWidth = useDimensions().screen.width;
 
     const plants = useSelector(store => store.orderPlantsReducer.availablePlants);
     const plantsToView = plants.filter(item => item.isSelected);
-    
+
+    var currentUserLastOrder = useSelector(store => store.usersReducer.currentUser.ordersHistory);
+    if (currentUserLastOrder.length !== 0 && counter === 0) {
+
+        for (var x = 0; x < 5; x++) {
+            dispatch(addOrRemoveSelectedPlant(currentUserLastOrder[0].plants[x]))
+        }
+
+        setCounter(1);
+        console.log('hhhh', currentUserLastOrder[0].plants);
+    }
+
+
 
     return (
         <View style={styles.orderContainer}>
@@ -47,6 +61,7 @@ function YourNextOrder(props) {
 const styles = StyleSheet.create({
     orderContainer: {
         height: '55%',
+        marginBottom:25,
         width: '100%',
         backgroundColor: 'rgba(247,245,255,1)',
         justifyContent: 'space-between',
@@ -60,6 +75,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(247,245,255,1)',
         width: '100%',
         height: '30%',
+        padding: 10,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
     }
