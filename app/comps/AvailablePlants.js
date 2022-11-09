@@ -6,8 +6,17 @@ import { useSelector } from 'react-redux';
 import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SaveOrder from './SaveOrder';
+import { GetCategories } from '../apis/getCategories';
 
 function AvailablePlants(props) {
+
+    // -------------------------------------------------------------
+
+
+    console.log( GetCategories());
+
+
+    // -------------------------------------------------------------
 
     const PrevieWidth = useDimensions().screen.width;
 
