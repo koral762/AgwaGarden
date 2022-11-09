@@ -10,7 +10,6 @@ function PlantsCirclePreview(props) {
     const dispatch = useDispatch();
 
     const quantityLimit = useSelector(store => store.orderPlantsReducer.quantityLimit);
-    const orderIsFull = (quantityLimit === 5);
 
     const image = `https://dev-agwa-public-static-assets-web.s3-us-west-2.amazonaws.com/images/vegetables/${plant.imageId}@3x.jpg`;
 
@@ -26,15 +25,15 @@ function PlantsCirclePreview(props) {
             justifyContent: 'start',
             alignItems: 'center'
         }}>
-            {orderIsFull && !isSelected && <View style={styles.disableBackground} />}
+            {quantityLimit === 5 && !isSelected && <View style={styles.disableBackground} />}
 
-            <TouchableOpacity style={styles.circlePreview} disabled={orderIsFull && !isSelected} key={plant.id} onPress={() => { pressOnPlant(plant.id, isSelected) }}>
-                <Image source={{uri:image}} style={styles.image} />
+            <TouchableOpacity style={styles.circlePreview} disabled={quantityLimit === 5 && !isSelected} key={plant.id} onPress={() => { pressOnPlant(plant.id, isSelected) }}>
+                <Image source={{ uri: image }} style={styles.image} />
             </TouchableOpacity >
 
 
             {isSelected && <View style={styles.addOrRemove}><Text style={{ textAlign: 'center', color: 'white' }}>-</Text></View>}
-            {!orderIsFull && !isSelected && <View style={styles.addOrRemove}><Text style={{ textAlign: 'center', color: 'white' }}>+</Text></View>}
+            {quantityLimit !== 5 && !isSelected && <View style={styles.addOrRemove}><Text style={{ textAlign: 'center', color: 'white' }}>+</Text></View>}
             <Text style={{ textAlign: 'center' }}>{plant.name.split('-')[0]}</Text>
         </View>
     );

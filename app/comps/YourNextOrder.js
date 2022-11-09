@@ -12,12 +12,12 @@ import { addOrRemoveSelectedPlant } from '../store/orderPlantsReducer';
 function YourNextOrder(props) {
 
 
-
     const [currentMonth, nextMonth] = getMonth();
     const PrevieWidth = useDimensions().screen.width;
 
     const plants = useSelector(store => store.orderPlantsReducer.availablePlants);
     const plantsToView = plants.filter(item => item.isSelected);
+    
 
     return (
         <View style={styles.orderContainer}>

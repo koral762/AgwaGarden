@@ -81,9 +81,9 @@ const usersReducer = createSlice({
         phoneNumber: '0542234567',
         address: 'hashalom 441/21 , tel aviv',
         plants: [
-          { id: 'tomato_sunrise1', name: 'Tomato - Sunrise', imageId: 'tomato_sunrise', isSelected: true },
-
-          { id: 'tomato_bigdena1', name: 'Tomato - Bigdena', imageId: 'bigdena', isSelected: true },
+          { id: 'pac_choi_mei_qing_choi', name: 'Pac Choi - Mei Qing Choi', imageId: 'pac_choi_mei_qing_choi', isSelected: true },
+          
+          { id: 'lettuce_green_butter', name: 'Lettuce - Green Butter', imageId: 'lettuce_green_butter', isSelected: true },
 
           { id: 'cucumber_iznik', name: 'Cucumber - Iznik', imageId: 'iznik', isSelected: true },
 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, Text, TouchableOpacity, ActivityIndicator, ScrollView, FlatList } from 'react-native';
 import PlantsCirclePreview from './PlantsCirclePreview';
 import { useDimensions } from '@react-native-community/hooks';
 import { useSelector } from 'react-redux';
@@ -9,12 +9,13 @@ import SaveOrder from './SaveOrder';
 
 function AvailablePlants(props) {
 
+
     const PrevieWidth = useDimensions().screen.width;
 
-    console.log('ani');
-
     const plants = useSelector(store => store.orderPlantsReducer.availablePlants);
+
     const plantsToView = plants.filter(item => !item.isSelected);
+
 
     const categories = useSelector(store => store.orderPlantsReducer.plantsCategories);
     var categoriesToView = categories.map(category => category.name);
@@ -23,6 +24,7 @@ function AvailablePlants(props) {
 
     function CategorySelected(selectedItem, index) {
         setPlantsInCategory(categories[index].plants.map(plant => plant.id));
+
     }
 
     return (
@@ -48,7 +50,7 @@ function AvailablePlants(props) {
                     horizontal={true}
                     data={(plantsInCategory.length) ? plantsToView.filter(item => plantsInCategory.includes(item.id)) : plantsToView}
                     renderItem={({ item }) => (
-                        <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} plant={item} isSelected={false} />
+                        <PlantsCirclePreview PrevieWidth={PrevieWidth / 6} margin={10} plant={item} isSelected={item.isSelected} />
                     )} />
             </View>
 
