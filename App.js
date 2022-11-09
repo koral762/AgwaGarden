@@ -1,18 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, Image, Platform } from 'react-native';
+import { StyleSheet, View, SafeAreaView, Platform } from 'react-native';
 import OrderScreen from './app/screens/OrderScreen';
 import { store } from './app/store/store';
 import { Provider } from 'react-redux';
 
-
 export default function App() {
 
   return (
-    <Provider store={store}>
     <SafeAreaView style={styles.container}>
-      <OrderScreen />
+      <Provider store={store}>
+        <OrderScreen />
+      </Provider>
     </SafeAreaView>
-    </Provider>
   );
 }
 

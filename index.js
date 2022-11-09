@@ -1,6 +1,7 @@
-import {createRoot} from 'react-dom/client';
+import * as ReactDOMClient from 'react-dom/client';
+import App from 'App';
 
-const container = document.getElementById('root');
-const root = createRoot(container);
+const container = document.getElementById('app');
 
-root.render(<App />);
+// Create *and* render a root with hydration.
+const root = ReactDOMClient.hydrateRoot(container, <App tab="home" />);

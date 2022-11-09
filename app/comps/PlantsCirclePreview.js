@@ -26,15 +26,15 @@ function PlantsCirclePreview(props) {
             justifyContent: 'start',
             alignItems: 'center'
         }}>
-            {orderIsFull && !isSelected && <View style={styles.disableBackground}/>}
+            {orderIsFull && !isSelected && <View style={styles.disableBackground} />}
 
             <TouchableOpacity style={styles.circlePreview} disabled={orderIsFull && !isSelected} key={plant.id} onPress={() => { pressOnPlant(plant.id, isSelected) }}>
-            <Image source={image} resizeMode="cover" style={styles.image}/>
+                <Image source={{uri:image}} style={styles.image} />
             </TouchableOpacity >
 
 
-            {isSelected && <View style={styles.addOrRemove}><Text style={{textAlign: 'center',color: 'white'}}>-</Text></View>}
-            {!orderIsFull && !isSelected && <View style={styles.addOrRemove}><Text style={{textAlign: 'center',color: 'white'}}>+</Text></View>}
+            {isSelected && <View style={styles.addOrRemove}><Text style={{ textAlign: 'center', color: 'white' }}>-</Text></View>}
+            {!orderIsFull && !isSelected && <View style={styles.addOrRemove}><Text style={{ textAlign: 'center', color: 'white' }}>+</Text></View>}
             <Text style={{ textAlign: 'center' }}>{plant.name.split('-')[0]}</Text>
         </View>
     );
@@ -63,19 +63,19 @@ const styles = StyleSheet.create({
         right: 0,
         borderRadius: '100%',
     },
-    image:{
+    image: {
         flex: 1,
         justifyContent: "center",
         borderRadius: '100%',
     },
-    disableBackground:{
+    disableBackground: {
         flex: 1,
         width: '100%',
         height: '100%',
         backgroundColor: 'rgba(239,234,253,0.4)',
         position: 'absolute',
-        zIndex:1,
-        top:0
+        zIndex: 1,
+        top: 0
     }
 })
 
