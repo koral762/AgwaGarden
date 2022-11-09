@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
+import { setCategoriesFromApi } from '../store/orderPlantsReducer';
+import { useDispatch } from 'react-redux';
 
-export const GetAll = () => {
+
+
+export const SetDataToState = () => {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState();
+
+    const dispatch = useDispatch();
     const url = 'https://dev-agwa-public-static-assets-web.s3-us-west-2.amazonaws.com/data/catalogs/agwafarm.json'
 
 
@@ -27,24 +33,16 @@ export const GetAll = () => {
 
     useEffect(() => {
         getCategories();
-        if (data) {
-            data.filter(category => category.id === "vines")[0].plants.map(item => console.log('plant', item.name))
-        }
     }, []);
 
+    if (data) {
+        console.log('jjjjjjj');
+        dispatch(setCategoriesFromApi(data));
+    }
+
+
     return (
-        <View style={{ flex: 1, padding: 24 }}>
-            {/* {isLoading ? <ActivityIndicator /> :
-
-                (
-                    data.filter(category => category.id === "vines")[0].plants.map(item =>
-                        <Text>
-                            {item.name}
-                        </Text>
-
-                    )
-
-                )} */}
+        <View >
         </View>
     );
 };

@@ -6,19 +6,12 @@ import { useSelector } from 'react-redux';
 import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SaveOrder from './SaveOrder';
-import { GetCategories } from '../apis/getCategories';
 
 function AvailablePlants(props) {
 
-    // -------------------------------------------------------------
-
-
-    console.log( GetCategories());
-
-
-    // -------------------------------------------------------------
-
     const PrevieWidth = useDimensions().screen.width;
+
+    console.log('ani');
 
     const plants = useSelector(store => store.orderPlantsReducer.availablePlants);
     const plantsToView = plants.filter(item => !item.isSelected);
@@ -59,6 +52,7 @@ function AvailablePlants(props) {
                     )} />
             </View>
 
+
             <View>
                 <SaveOrder />
             </View>
@@ -74,28 +68,28 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(239,234,253,1)',
         justifyContent: 'space-between'
     },
-    categoryPlants: {
-        height: '55%',
-        width: '100%',
-        flexDirection: 'row',
-        paddingLeft: 9
-    },
-    dropdown2DropdownStyle: {
-        backgroundColor: 'rgba(255,255,255,0)',
-        borderBottomLeftRadius: 12,
-        borderBottomRightRadius: 12,
-        width: '50%',
-    },
-    dropdown2RowStyle: { backgroundColor: '#444', borderBottomColor: '#C5C5C5' },
-    dropdown2RowTxtStyle: {
-        color: '#FFF',
-        textAlign: 'center',
-        fontWeight: 'bold',
-    },
-    dropdown2BtnTxtStyle: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-    }
+    // categoryPlants: {
+    //     height: '55%',
+    //     width: '100%',
+    //     flexDirection: 'row',
+    //     paddingLeft: 9
+    // },
+    // dropdown2DropdownStyle: {
+    //     backgroundColor: 'rgba(255,255,255,0)',
+    //     borderBottomLeftRadius: 12,
+    //     borderBottomRightRadius: 12,
+    //     width: '50%',
+    // },
+    // dropdown2RowStyle: { backgroundColor: '#444', borderBottomColor: '#C5C5C5' },
+    // dropdown2RowTxtStyle: {
+    //     color: '#FFF',
+    //     textAlign: 'center',
+    //     fontWeight: 'bold',
+    // },
+    // dropdown2BtnTxtStyle: {
+    //     textAlign: 'center',
+    //     fontWeight: 'bold',
+    // }
 
 })
 

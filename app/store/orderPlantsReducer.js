@@ -36,81 +36,7 @@ const orderPlantsReducer = createSlice({
         imageId: "bigdena"
       }
     ],
-    plantsCategories:
-      [
-        {
-          id: "green_head",
-          name: "Green Head",
-          plants: [
-            {
-              id: "pac_choi_mei_qing_choi",
-              name: "Pac Choi - Mei Qing Choi"
-            },
-            {
-              id: "lettuce_green_butter",
-              name: "Lettuce - Green Butter"
-            },
-            {
-              id: "lettuce_red_butter",
-              name: "Lettuce - Red Butter"
-            },
-            {
-              id: "lettuce_green_sweet_crisp",
-              name: "Lettuce - Green Sweet Crisp"
-            },
-            {
-              id: "lettuce_green_oakleaf",
-              name: "Lettuce - Green Oakleaf"
-            },
-            {
-              id: "lettuce_romain",
-              name: "Lettuce - Romain"
-            },
-            {
-              id: "lettuce_cherokee",
-              name: "Lettuce - Cherokee"
-            }]
-        },
-        {
-          id: "greens",
-          name: "Greens",
-          plants: [
-            {
-              id: "arugula_esmee",
-              name: "Arugula - Esmee"
-            },
-            {
-              id: "chard_bright_lights",
-              name: "Chard - Bright Lights"
-            },
-            {
-              id: "mustard_greens_red_giant",
-              name: "Mustard Greens - Red Giant"
-            }]
-        },
-        {
-          id: "vines",
-          name: "Vines",
-          plants: [
-            {
-              id: "cucumber_iznik",
-              name: "Cucumber - Iznik"
-            },
-            {
-              id: "tomato_sunrise",
-              name: "Tomato - Sunrise"
-            },
-            {
-              id: "tomato_bigdena",
-              name: "Tomato - Bigdena"
-            },
-            {
-              id: "tomato_beorange",
-              name: "Tomato - Beorange"
-            }
-          ]
-        }
-      ],
+    plantsCategories:[],
     quantityLimit: 0,
     selectedPlants: [],
     newOrder: []
@@ -122,6 +48,16 @@ const orderPlantsReducer = createSlice({
 
 
     },
+    
+    // setAvailablePlantsFromApi: (state, action) => {
+    //   const data = action.payload;
+    //   state.availablePlants = [...data];
+    // },
+    setCategoriesFromApi: (state, action) => {
+      const data = action.payload;
+      state.plantsCategories = [...data];
+    },
+
     addOrRemoveSelectedPlant: (state, action) => {
 
       const { id, isSelected } = action.payload;
@@ -164,5 +100,5 @@ const orderPlantsReducer = createSlice({
 
 })
 
-export const { addOrRemoveSelectedPlant, getAvailablePlants, addToSelectedPlants, createNewOrder } = orderPlantsReducer.actions;
+export const { addOrRemoveSelectedPlant, getAvailablePlants, addToSelectedPlants, createNewOrder, setCategoriesFromApi } = orderPlantsReducer.actions;
 export default orderPlantsReducer.reducer;

@@ -5,8 +5,6 @@ import AvailablePlants from '../comps/AvailablePlants';
 import NavBar from '../comps/NavBar';
 import YourNextOrder from '../comps/YourNextOrder';
 import { addToSelectedPlants, getAvailablePlants } from '../store/orderPlantsReducer';
-import { GetAll } from '../../services/GetAll';
-
 
 function OrderScreen(props) {
 
@@ -27,7 +25,6 @@ function OrderScreen(props) {
     return (
         <View style={styles.background}>
             <NavBar />
-            <GetAll/>
             <YourNextOrder />
             <AvailablePlants />
         </View>
