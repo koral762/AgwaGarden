@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, ActivityIndicator, ScrollView, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, FlatList } from 'react-native';
 import PlantsCirclePreview from './PlantsCirclePreview';
 import { useDimensions } from '@react-native-community/hooks';
 import { useSelector } from 'react-redux';
@@ -7,8 +7,7 @@ import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SaveOrder from './SaveOrder';
 
-function AvailablePlants({navigation}) {
-
+function AvailablePlants({ navigation }) {
 
     const PrevieWidth = useDimensions().screen.width;
 
@@ -24,7 +23,6 @@ function AvailablePlants({navigation}) {
 
     function CategorySelected(selectedItem, index) {
         setPlantsInCategory(categories[index].plants.map(plant => plant.id));
-
     }
 
     return (
@@ -92,8 +90,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
     },
-
-    
 })
 
 export default AvailablePlants;

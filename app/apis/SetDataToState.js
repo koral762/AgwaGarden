@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
-import { setCategoriesFromApi,setAvailablePlantsFromApi } from '../store/orderPlantsReducer';
+import { View } from 'react-native';
+import { setCategoriesFromApi, setAvailablePlantsFromApi } from '../store/orderPlantsReducer';
 import { useDispatch } from 'react-redux';
 
 export const SetDataToState = () => {
@@ -30,7 +30,7 @@ export const SetDataToState = () => {
             setLoading(false);
         }
     }
-    
+
     const getPlants = async () => {
         try {
             const response = await fetch(urlPlants, {
@@ -48,17 +48,15 @@ export const SetDataToState = () => {
             setLoading(false);
         }
     }
+
     useEffect(() => {
         getPlants();
         getCategories();
     }, []);
 
-    if (dataCategories) {
-        dispatch(setCategoriesFromApi(dataCategories));
-    }
-    if (dataPlants) {
-        dispatch(setAvailablePlantsFromApi(dataPlants));
-    }
+    if (dataCategories) dispatch(setCategoriesFromApi(dataCategories));
+
+    if (dataPlants) dispatch(setAvailablePlantsFromApi(dataPlants));
 
     return (
         <View></View>

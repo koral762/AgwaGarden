@@ -13,11 +13,6 @@ const orderPlantsReducer = createSlice({
 
   reducers: {
 
-    getAvailablePlants: (state, action) => {
-
-
-    },
-
     setAvailablePlantsFromApi: (state, action) => {
       const data = action.payload;
       if (current(state.availablePlants).length === 0) {
@@ -32,10 +27,10 @@ const orderPlantsReducer = createSlice({
         })
       }
     },
+
     setCategoriesFromApi: (state, action) => {
       const data = action.payload;
       state.plantsCategories = [...data];
-
     },
 
     addOrRemoveSelectedPlant: (state, action) => {
@@ -43,16 +38,12 @@ const orderPlantsReducer = createSlice({
       const { id, isSelected } = action.payload;
 
       const objPlantIdx = current(state.availablePlants).findIndex(item => item.id === id);
-      console.log('lllll',state.availablePlants[objPlantIdx].isSelected);
       state.availablePlants[objPlantIdx].isSelected = !isSelected;
 
       state.selectedPlants = state.availablePlants.filter(item => item.isSelected);
       state.quantityLimit = state.selectedPlants.length;
-      console.log('====================================');
-      console.log('lllll',state.availablePlants[objPlantIdx].isSelected);
-      console.log('====================================');
-
     },
+
     addToSelectedPlants: (state, action) => {
 
       const plant = action.payload;
@@ -62,11 +53,12 @@ const orderPlantsReducer = createSlice({
       state.availablePlants[objPlantIdx].isSelected = true;
 
       state.quantityLimit = state.selectedPlants.length;
-
     },
+
     getQuantityLimit: (state, action) => {
       return current(state.selectedPlants).length;
     },
+
     createNewOrder: (state, action) => {
 
       const user = action.payload;
@@ -85,5 +77,5 @@ const orderPlantsReducer = createSlice({
 
 })
 
-export const { addOrRemoveSelectedPlant, getAvailablePlants, addToSelectedPlants, createNewOrder, setAvailablePlantsFromApi, setCategoriesFromApi } = orderPlantsReducer.actions;
+export const { addOrRemoveSelectedPlant, addToSelectedPlants, createNewOrder, setAvailablePlantsFromApi, setCategoriesFromApi } = orderPlantsReducer.actions;
 export default orderPlantsReducer.reducer;

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet,View } from 'react-native';
 import NavBar from '../comps/NavBar';
 
-function HomeScreen({navigation}) {
+function HomeScreen() {
 
     return (
         <View style={styles.background}>

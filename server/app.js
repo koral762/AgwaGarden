@@ -7,8 +7,6 @@ require('./NewOrder');
 app.use(bodyParser.json());
 
 
-
-
 const NewOrder = mongoose.model('newOrder');
 
 const password = 'aviram2020';
@@ -45,7 +43,6 @@ app.post('/send-data', (req, res) => {
 
     order.save()
         .then(data => {
-            console.log(data);
             res.send("success");
         }).catch(err => {
             res.send(err);

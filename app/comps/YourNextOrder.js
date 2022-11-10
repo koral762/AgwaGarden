@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text, ActivityIndicator, FlatList } from 'react-native';
+import { View, StyleSheet, Text, FlatList } from 'react-native';
 import getMonth from '../utils/getMonths';
 import PlantsCirclePreview from './PlantsCirclePreview';
 import { useDimensions } from '@react-native-community/hooks';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCurrentUser } from '../store/usersReducer';
 import { addOrRemoveSelectedPlant } from '../store/orderPlantsReducer';
 
 
@@ -28,10 +27,7 @@ function YourNextOrder(props) {
         }
 
         setCounter(1);
-        console.log('hhhh', currentUserLastOrder[0].plants);
     }
-
-
 
     return (
         <View style={styles.orderContainer}>
@@ -61,7 +57,7 @@ function YourNextOrder(props) {
 const styles = StyleSheet.create({
     orderContainer: {
         height: '55%',
-        marginBottom:25,
+        marginBottom: 25,
         width: '100%',
         backgroundColor: 'rgba(247,245,255,1)',
         justifyContent: 'space-between',

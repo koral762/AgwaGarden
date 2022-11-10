@@ -1,21 +1,52 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View,Modal } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { createNewOrder } from '../store/orderPlantsReducer';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Link } from '@react-navigation/native';
+import { Image, StyleSheet, Text, TouchableOpacity, View, Modal } from 'react-native';
+import { useSelector } from 'react-redux';
 
+const SaveOrder = ({ navigation }) => {
 
-function SaveOrder(props) {
-
-    const dispatch = useDispatch();
     const quantityLimit = useSelector(store => store.orderPlantsReducer.quantityLimit);
+    const selectedPlants = useSelector(store => store.orderPlantsReducer.selectedPlants);
     const currentUser = useSelector(store => store.usersReducer.currentUser);
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     function orderSaved() {
-        dispatch(createNewOrder(currentUser));
+
+        navigation.navigation.navigate('Home');
+
+        const user = currentUser;
+
+        const order = {
+            name: user.name,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            address: user.address,
+            plants: selectedPlants
+        }
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(order)
+        };
+
+        const postOrder = async () => {
+            try {
+                await fetch(
+                    'http://localhost:3000/send-data', requestOptions)
+                    .then(response => {
+                        response.json()
+                            .then(data => {
+                                Alert.alert("Post created at : ",
+                                    data.createdAt);
+                            });
+                    })
+            }
+            catch (error) {
+                console.error(error);
+            }
+        }
+
+        postOrder();
 
         setModalIsOpen(true);
         setTimeout(() => {
@@ -23,6 +54,7 @@ function SaveOrder(props) {
         }, 2000);
 
     }
+
 
     return (
         <View>
@@ -38,7 +70,9 @@ function SaveOrder(props) {
             </Modal>}
 
             <View style={(quantityLimit === 5) ? styles.buttonContainer : styles.buttonContainerdisabled}>
-                <TouchableOpacity style={styles.button} disabled={quantityLimit !== 5} onPress={() => { orderSaved() }} >
+                <TouchableOpacity style={styles.button} disabled={quantityLimit !== 5} onPress={() => {
+                    orderSaved()
+                }} >
                     <Text style={{ fontWeight: 'bold', height: 30 }}>SAVE CHANGES</Text>
                 </TouchableOpacity>
             </View>
@@ -58,22 +92,20 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22,
-
     },
     buttonContainer: {
         width: '100%',
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 60,
-
+        marginTop: 75,
     },
     buttonContainerdisabled: {
         width: '100%',
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 60,
+        marginTop: 75,
         opacity: 0.5,
     },
     button: {
@@ -87,7 +119,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: "rgba(148,217,234,1)"
     },
-
 })
 
 export default SaveOrder;

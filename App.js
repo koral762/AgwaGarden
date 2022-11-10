@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, SafeAreaView, Platform } from 'react-native';
+import { StyleSheet, SafeAreaView, Platform } from 'react-native';
 import { store } from './app/store/store';
 import { Provider } from 'react-redux';
 import { SetDataToState } from './app/apis/SetDataToState';
@@ -8,28 +8,24 @@ import OrderScreen from './app/screens/OrderScreen';
 import HomeScreen from './app/screens/HomeScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
-
 export default function App() {
 
   const Stack = createNativeStackNavigator();
 
   return (
-    <NavigationContainer>
       <SafeAreaView style={styles.container}>
         <Provider store={store}>
           <SetDataToState />
-          <Stack.Navigator>
-            <Stack.Screen
-              name="'"
-              component={OrderScreen}
-            />
-            <Stack.Screen name="HOME" component={HomeScreen} />
-          </Stack.Navigator>
+          
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Order">
+              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="Order" component={OrderScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
 
         </Provider>
       </SafeAreaView>
-    </NavigationContainer>
   );
 }
 

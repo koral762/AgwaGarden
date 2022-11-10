@@ -100,9 +100,7 @@ const usersReducer = createSlice({
 
   reducers: {
 
-    getCurrentUser: () => {
-
-    }
+    getCurrentUser: () => {}
 
   }
 

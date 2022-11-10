@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 function NavBar(props) {
 
