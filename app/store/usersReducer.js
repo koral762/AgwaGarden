@@ -9,6 +9,8 @@ const usersReducer = createSlice({
         id: "123",
         name: "koral sabbah",
         email: "koral762@gmail.com",
+        address: 'mitzpe nof 88',
+        phoneNumber: '0507620101',
         ordersHistory: [{
           id: "1278esik",
           name: "koral sabbah",
@@ -47,7 +49,7 @@ const usersReducer = createSlice({
           ]
 
         }],
-        isConnected: false
+        isConnected: true
 
       },
       {
@@ -57,7 +59,7 @@ const usersReducer = createSlice({
         ordersHistory: [],
         phoneNumber: "0508823433",
         address: 'nahalal 34 , tel aviv',
-        isConnected: true
+        isConnected: false
       },
       {
         id: "2451",
@@ -74,6 +76,8 @@ const usersReducer = createSlice({
       id: "123",
       name: "koral sabbah",
       email: "koral762@gmail.com",
+      address: 'mitzpe nof 88',
+      phoneNumber: '0507620101',
       ordersHistory: [{
         id: "1278esik",
         name: "koral sabbah",
@@ -82,14 +86,14 @@ const usersReducer = createSlice({
         address: 'hashalom 441/21 , tel aviv',
         plants: [
           { id: 'pac_choi_mei_qing_choi', name: 'Pac Choi - Mei Qing Choi', imageId: 'pac_choi_mei_qing_choi' },
-          
+
           { id: 'lettuce_green_butter', name: 'Lettuce - Green Butter', imageId: 'lettuce_green_butter' },
 
           { id: 'cucumber_iznik', name: 'Cucumber - Iznik', imageId: 'iznik' },
 
           { id: 'tomato_sunrise', name: 'Tomato - Sunrise', imageId: 'tomato_sunrise' },
 
-          { id: 'tomato_bigdena', name: 'Tomato - Bigdena', imageId: 'bigdena'}
+          { id: 'tomato_bigdena', name: 'Tomato - Bigdena', imageId: 'bigdena' }
         ]
 
       }],
@@ -100,7 +104,7 @@ const usersReducer = createSlice({
 
   reducers: {
 
-    getCurrentUser: () => {}
+    getCurrentUser: () => { }
 
   }
 

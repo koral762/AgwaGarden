@@ -2,11 +2,11 @@ import React from 'react';
 import { StyleSheet,View } from 'react-native';
 import NavBar from '../comps/NavBar';
 
-function HomeScreen() {
+function HomeScreen(navigation) {
 
     return (
         <View style={styles.background}>
-            <NavBar title={'HOME'} />
+            <NavBar title={'HOME'} navigation={navigation} />
         </View>
     );
 }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View, Modal } from 'react-native';
 import { useSelector } from 'react-redux';
 
+
 const SaveOrder = ({ navigation }) => {
 
     const quantityLimit = useSelector(store => store.orderPlantsReducer.quantityLimit);
@@ -25,33 +26,45 @@ const SaveOrder = ({ navigation }) => {
 
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET',
+                'Access-Control-Allow-Credentials': 'false',
+                'Access-Control-Allow-Headers': 'Origin ,OPTIONS ,X-Requested-With,Content-Type,Accept'
+
+            },
             body: JSON.stringify(order)
         };
 
         const postOrder = async () => {
             try {
                 await fetch(
-                    'http://localhost:3000/send-data', requestOptions)
+                    'http://192.168.1.56:5000/send-data', requestOptions)
                     .then(response => {
                         response.json()
                             .then(data => {
-                                Alert.alert("Post created at : ",
-                                    data.createdAt);
-                            });
+                                Alert.alert("Post created");
+                            })
                     })
             }
             catch (error) {
-                console.error(error);
+                console.error('im here', error);
             }
         }
 
-        postOrder();
 
-        setModalIsOpen(true);
-        setTimeout(() => {
-            setModalIsOpen(false);
-        }, 2000);
+        postOrder().then(data => {
+
+            setModalIsOpen(true);
+            setTimeout(() => {
+                setModalIsOpen(false);
+            }, 2000);
+
+        })
+
+
 
     }
 

@@ -11,7 +11,7 @@ function OrderScreen(navigation) {
 
     return (
         <View style={styles.background}>
-            <NavBar title={'ORDER'} />
+            <NavBar title={'ORDER'} navigation={navigation}/>
             {plants.length !== 0 &&
                 <View style={{ flex: 1 }}>
                     <YourNextOrder />

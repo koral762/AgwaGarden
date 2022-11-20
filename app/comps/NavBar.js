@@ -1,12 +1,15 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-function NavBar(props) {
+function NavBar({ title, navigation }) {
 
     return (
         <View style={styles.navbar}>
-            <Text style={styles.xStyle}>x</Text>
-            <Text style={{ textAlign: 'center' }}>{props.title}</Text>
+
+            <Text style={styles.xStyle} onPress={() =>
+                navigation.navigation.navigate('Home')}>x</Text>
+            <Text style={{ textAlign: 'center' }}>{title}</Text>
+            
         </View>
     );
 }
@@ -26,9 +29,9 @@ const styles = StyleSheet.create({
         width: '10%',
         alignSelf: 'end',
         position: "absolute",
-        fontSize:40,
-        top:0,
-        right:0,
+        fontSize: 40,
+        top: 0,
+        right: 0,
         paddingTop: 10,
         paddingRight: 10
     }
