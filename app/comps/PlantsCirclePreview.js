@@ -14,6 +14,7 @@ function PlantsCirclePreview(props) {
     const image = `https://dev-agwa-public-static-assets-web.s3-us-west-2.amazonaws.com/images/vegetables/${plant.imageId}@3x.jpg`;
 
     function pressOnPlant(id, isSelected) {
+        if (!id) return;
         dispatch(addOrRemoveSelectedPlant({ id, isSelected }));
     }
 
