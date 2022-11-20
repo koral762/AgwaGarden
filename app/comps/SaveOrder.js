@@ -29,11 +29,6 @@ const SaveOrder = ({ navigation }) => {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET',
-                'Access-Control-Allow-Credentials': 'false',
-                'Access-Control-Allow-Headers': 'Origin ,OPTIONS ,X-Requested-With,Content-Type,Accept'
-
             },
             body: JSON.stringify(order)
         };
@@ -43,29 +38,18 @@ const SaveOrder = ({ navigation }) => {
                 await fetch(
                     'http://192.168.1.56:5000/send-data', requestOptions)
                     .then(response => {
-                        response.json()
-                            .then(data => {
-                                Alert.alert("Post created");
-                            })
+                        setModalIsOpen(true);
+                        setTimeout(() => {
+                            setModalIsOpen(false);
+                        }, 2000);
                     })
             }
             catch (error) {
-                console.error('im here', error);
+                console.error('Error!!:', error);
             }
         }
 
-
-        postOrder().then(data => {
-
-            setModalIsOpen(true);
-            setTimeout(() => {
-                setModalIsOpen(false);
-            }, 2000);
-
-        })
-
-
-
+        postOrder();
     }
 
 
