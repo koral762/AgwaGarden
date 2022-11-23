@@ -1,4 +1,4 @@
-# Mobile app for ordering plants
+# Ordering Plants Mobile App
 - React Native
 - JavaScript
 - Node.js
